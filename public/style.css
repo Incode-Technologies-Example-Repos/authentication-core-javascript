@@ -1,0 +1,1018 @@
+/*  */
+/* Tutorials */
+/*  */
+
+/* Tutorial Base */
+/* Header Container*/
+.IncodeTutorialHeaderContainer {
+}
+/* Header */
+.IncodeTutorialHeader {
+}
+/* Header Title (h1) */
+.IncodeTutorialHeaderTitle {
+}
+/* Header Subtitle  */
+.IncodeTutorialHeaderSubtitle {
+}
+/* Video */
+.IncodeTutorialVideo {
+}
+/* Button container */
+.IncodeTutorialButtonContainer {
+}
+/* Continue Button */
+.IncodeTutorialButton {
+}
+
+/* Tutorial Front */
+/* Header Container*/
+.IncodeTutorialHeaderContainerFront {
+}
+/* Header */
+.IncodeTutorialHeaderFront {
+}
+/* Header Title (h1) */
+.IncodeTutorialHeaderTitleFront {
+}
+/* Header Subtitle  */
+.IncodeTutorialHeaderSubtitleFront {
+}
+/* Video */
+.IncodeTutorialVideoFront {
+}
+/* Button container */
+.IncodeTutorialButtonContainerFront {
+}
+/* Continue Button */
+.IncodeTutorialButtonFront {
+}
+
+/* Tutorial Back */
+/* Header Container*/
+.IncodeTutorialHeaderContainerBack {
+}
+/* Header */
+.IncodeTutorialHeaderBack {
+}
+/* Header Title (h1) */
+.IncodeTutorialHeaderTitleBack {
+}
+/* Header Subtitle  */
+.IncodeTutorialHeaderSubtitleBack {
+}
+/* Video */
+.IncodeTutorialVideoBack {
+}
+/* Button container */
+.IncodeTutorialButtonContainerBack {
+}
+/* Continue Button */
+.IncodeTutorialButtonBack {
+}
+/* Front tutorial container */
+.IncodeCaptureFrontIdTutorial {
+}
+/* Back tutorial container */
+.IncodeCaptureBackIdTutorial {
+}
+/* Tutorial selfie */
+
+/* Button */
+.IncodeTutorialButtonSelfie {
+}
+
+/*  */
+/* OTP */
+/*  */
+
+/* OTP Container */
+.IncodeOTP {
+}
+/* OTP content */
+.IncodeOTPContent {
+}
+/* OTP title */
+.IncodeOTPTitle {
+}
+/* OTP paragraph of the seconds */
+.IncodeOTPSecondsParagraph {
+}
+/* OTP Label with instructions */
+.IncodeOTPLabel {
+}
+/* OTP Code Text p */
+.IncodeOTPText {
+}
+/* OTP timer */
+.IncodeOTPTimer {
+}
+/* OTP error text */
+.IncodeOTPError {
+}
+/* OTP button */
+.IncodeOTPButton {
+}
+/* Each input in OTP */
+.IncodeOTPInput {
+}
+
+/*  */
+/* Conference */
+/*  */
+
+/* Modal for exit the conference */
+/* Container for modal */
+.IncodeAreYouSureModal {
+}
+/* Modal overlay */
+.IncodeAreYouSureModalOverlay {
+}
+/* Modal close icon button */
+.IncodeAreYouSureModalCloseIconButton {
+}
+/* Modal close icon span */
+.IncodeAreYouSureModalCloseIconSpan {
+}
+/* Title */
+.IncodeAreYouSureModalTitle {
+}
+/* Modal subtitle */
+.IncodeAreYouSureModalSubtitle {
+}
+/* Modal buttons container */
+.IncodeAreYouSureModalButtonsContainer {
+}
+/* Continue PRocess Button */
+.IncodeAreYouSureModalContinueProcessButton {
+}
+/* Disconnect Button */
+.IncodeAreYouSureModalDisconnectButton {
+}
+
+/* Connecting footer (The one with the SMS message and disconnect button) */
+/* Container */
+.IncodeSMSMessageContainer {
+}
+/* SMS message container (only the one with text about sms) */
+.IncodeSMSContainer {
+}
+/* SMS Icon */
+.IncodeSMSIconImg {
+}
+/* SMS text */
+.IncodeSmsText {
+}
+/* Disconnect button */
+.IncodeDisconnectButtonQueue {
+}
+
+/* Conference Connected Video Call view*/
+/* container */
+.IncodeConferenceContainer {
+}
+/* Header */
+.IncodeConferenceHeader {
+}
+/* User video container */
+.IncodeSubscriberContainer {
+}
+
+/* Bandwidth check */
+/* Bandwidth check container */
+.IncodeBandwithContainer {
+}
+/* Bandwidth spinner */
+.IncodeBandwidthSpinner {
+}
+/* Bandwidth title */
+.IncodeBandwithTitle {
+}
+/* Bandwidth image */
+.IncodeBandwidthImage {
+}
+/* Bandwidth subtitle */
+.IncodeBandwidthSubtitle {
+}
+/* Bandwidth text */
+.IncodeBandwithText {
+}
+
+/* Connecting */
+/* Connecting title */
+.IncodeConnectingTitle {
+}
+/* Connecting image */
+.IncodeConnectingImage {
+}
+/* Connecting loading circle container */
+.IncodeLoadingCircleContainer {
+}
+/* Connecting loading circle spinner */
+.IncodeLoadingCircleSpinnerInner {
+}
+/* Connecting loading circle image */
+.IncodeLoadingCircleImg {
+}
+/* Connecting loading circle text */
+.IncodeLoadingCircleConnectingText {
+}
+/* Connecting span */
+.IncodeConnectingSpan {
+}
+/* Connecting SMS container */
+.IncodeFooterSmsMessage {
+}
+
+/* Executive Ready  */
+/* container */
+.IncodeExecutiveReadyContainer {
+}
+/* Ececutive ready title  */
+.IncodeExecutiveReadyTitle {
+}
+/* Ececutive ready image  */
+.IncodeExecutiveReadyImage {
+}
+/* Ececutive is ready message  */
+.IncodeExecutiveReadyMessage {
+}
+/* Actions container (The one with the connect and disconnect button) */
+.IncodeExecutiveReadyButtonContainer {
+}
+/* ready to connect button */
+.IncodeExecutiveReadyConnectButton {
+}
+/* disconnect button (in the executive ready view) */
+.IncodeExecutiveReadyDisconnectButton {
+}
+
+/* Common */
+/* Checkbox */
+.IncodeCheckbox {
+}
+/* Notification container */
+.IncodeNotificationContainer {
+}
+
+/* Signature */
+/* Signature container */
+.IncodeSignatureContainer {
+}
+/* Signature title */
+.IncodeSignatureTitle {
+}
+/* Signature subtitle */
+.IncodeSignatureSubtitle {
+}
+/* Signature canvas container */
+.IncodeSignatureCanvasContainer {
+}
+/* Signature canvas */
+.IncodeSignatureCanvas {
+}
+/* Signature buttons container */
+.IncodeSignatureButtonsContainer {
+}
+/* Signature clear button */
+.IncodeSignatureClearButton {
+}
+/* Signature done button */
+.IncodeSignatureDoneButton {
+}
+
+/* FaceMatch */
+/* FaceMatch container */
+.IncodeMatchUserContainer {
+}
+/* FaceMatch body container */
+.IncodeMatchUserBodyContainer {
+}
+/* FaceMatch title */
+.IncodeMatchUserTitle {
+}
+/* FaceMatch message */
+.IncodeMatchUserMessage {
+}
+/* FaceMatch circles container */
+.IncodeMatchUserCirclesContainer {
+}
+/* FaceMatch circle with ID */
+.IncodeMatchUserIDFace {
+}
+/* FaceMatch circle with face */
+.IncodeMatchUserFace {
+}
+/* FaceMatch circle with second ID */
+.IncodeMatchUserIDSecondFace {
+}
+/* FaceMatch circle with face match */
+.IncodeMatchUserFaceMatch {
+}
+/* FaceMatch container circle buttons */
+.IncodeMatchUserContainerContinueButton {
+}
+/* FaceMatch continue button */
+.IncodeMatchUserContinueButton {
+}
+/* FaceMatch liveness stripe */
+.IncodeMatchUserLivenessStripe {
+}
+/* FaceMatch liveness image */
+.IncodeMatchUserLivenessImage {
+}
+
+/* CapturePreview */
+/* CapturePreview container */
+.IncodePreviewContainer {
+}
+/* CapturePreview message */
+.IncodeCapturePreviewMessage {
+}
+/* CapturePreview message image */
+.IncodeCapturePreviewMessageImage {
+}
+/* CapturePreview image container */
+.IncodeCapturePreviewImageContainer {
+}
+/* CapturePreview image */
+.IncodeCapturePreviewImage {
+}
+/* CapturePreview uploading container */
+.IncodeCapturePreviewUploadingContainer {
+}
+/* CapturePreview uploading text */
+.IncodeCapturePreviewUploadingText {
+}
+/* CapturePreview uploading bar outside */
+.IncodeCapturePreviewUploadingBarOutside {
+}
+/* CapturePreview uploading progress bar */
+.IncodeCapturePreviewUploadingProgress {
+}
+
+/* Retake */
+
+/* Incode retake container */
+.IncodeRetakeContainer {
+}
+/* Incode retake title */
+.IncodeRetakeTitle {
+}
+/* Incode retake subtitle */
+.IncodeRetakeSubtitle {
+}
+/* Incode retake image container */
+.IncodeRetakeImageContainer {
+}
+/* Incode retake image */
+.IncodeRetakeImage {
+}
+/* Incode retake buttons container */
+.IncodeRetakeButtonsContainer {
+}
+/* Incode retake button */
+.IncodeRetakeButton {
+}
+/* Incode retake continue button */
+.IncodeRetakeContinueContainer {
+}
+
+/* Legal Modal */
+
+/* Legal modal container */
+.IncodeLegalModal {
+}
+/* Legal modal overlay */
+.IncodeLegalModalOverlay {
+}
+/* Legal modal title */
+.IncodeLegalModalTitle {
+}
+/* Legal modal text */
+.IncodeLegalModalTermsText {
+}
+/* Legal modal buttons container */
+.IncodeLegalModalButtonsContainer {
+}
+/* Legal modal cancel button */
+.IncodeLegalModalCancelButton {
+}
+
+/* Tutorials */
+
+/* Incode iOS Instructions Container */
+.IncodeiOSInstructionsContainer {
+}
+/* Incode Android Instructions Container */
+.IncodeAndroidInstructionsContainer {
+}
+/* Incode Permissions Reload Button Container */
+.IncodePermissionsReloadButtonContainer {
+}
+/* Incode Allow Permissions Container */
+.IncodeAllowPermissionsContainer {
+}
+/* Incode Allow Permissions Button Container */
+.IncodeAllowPermissionsButtonContainer {
+}
+/* Incode iOS Permissions Container */
+.IncodeiOSPermissionsContainer {
+}
+/* Incode Android Permissions Container */
+.IncodeAndroidPermissionsContainer {
+}
+/* Incode iOS Instructions Content */
+.IncodeiOSInstructionsContent {
+}
+/* Incode Android Instructions Content */
+.IncodeAndroidInstructionsContent {
+}
+/* Incode Allow Permissions Button */
+.IncodeAllowPermissionsButton {
+}
+/* Incode iOS Button */
+.IncodeiOSButton {
+}
+/* Incode Android Permissions Button */
+.IncodeAndroidPermissionsButton {
+}
+
+/* Incode Login */
+/* Main container for the Incode login component. */
+.IncodeLoginContainer {
+}
+/* Container that holds the capture button within the Incode login component. */
+.IncodeLoginCaptureButtonContainer {
+}
+/* Container holding the webcam view in the Incode login component. */
+.IncodeLoginWebcamContainer {
+}
+/* Container for borders in the Incode login component. */
+.IncodeLoginBordersContainer {
+}
+/* Borders during loading states within the Incode login component. */
+.IncodeLoginLoadingBorders {
+}
+/* This class is used to hide login in the Incode login component. */
+.IncodeLoginHidder {
+}
+/* Outer part of the oval-shaped camera frame in the Incode login component. */
+.IncodeLoginCameraOvalOuter {
+}
+/* Inner part of the oval-shaped camera frame in the Incode login component. */
+.IncodeLoginCameraOvalInner {
+}
+/* Frame that indicates the user's face area during login. */
+.IncodeLoginFaceFrame {
+}
+/* Webcam in the Incode login component. */
+.IncodeLoginWebcam {
+}
+/* Text inside the oval-shaped camera frame in the Incode login component. */
+.IncodeLoginCameraOvalInnerText {
+}
+/* Inline notifications that appear within the Incode login component. */
+.IncodeLoginNotificationInline {
+}
+
+/* Incode Login Desktop */
+/* Main container for the Incode login component in desktop view. */
+.IncodeLoginDesktopContainer {
+}
+/* Container that holds the capture button within the Incode login desktop component. */
+.IncodeLoginDesktopCaptureButtonContainer {
+}
+/* Container holding the webcam view in the Incode login desktop component. */
+.IncodeLoginDesktopWebcamContainer {
+}
+/* Class used for styling the face mask in the Incode login desktop component. */
+.IncodeLoginDesktopFaceMask {
+}
+/* Frame that indicates the user's face area during login in the desktop view. */
+.IncodeLoginDesktopFaceFrame {
+}
+/* Webcam in the Incode login desktop component. */
+.IncodeLoginDesktopWebcam {
+}
+/* Notifications that appear within the Incode login desktop component. */
+.IncodeLoginDesktopNotification {
+}
+
+/* Incode Second Factor */
+/* Main container for the second factor authentication component. */
+.IncodeSecondFactorContainer {
+}
+/* Class for div elements requiring margin in the second factor authentication component. */
+.IncodeSecondFactorDivWithMargin {
+}
+/* Input element for the second factor authentication component. */
+.IncodeSecondFactorInput {
+}
+/* Button for the second factor authentication component. */
+.IncodeSecondFactorButton {
+}
+
+/* Incode Additional ID */
+/* Main container for the additional ID component. */
+.IncodeAdditionalIDContainer {
+}
+/* Webcam view in the additional ID component. */
+.IncodeAdditionalIDWebcam {
+}
+/* Preview of the capture in the additional ID component. */
+.IncodeAdditionalIDCapturePreview {
+}
+/* Fake button shown after autocapture timeout in the additional ID component. */
+.IncodeAdditionalIDFakeButton {
+}
+/* Notifications within the additional ID component. */
+.IncodeAdditionalIDNotification {
+}
+
+/* Incode Capture Desktop Selfie */
+/* Main container for the selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieContainer {
+}
+/* Header for the selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieHeader {
+}
+/* Selfie container for the selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieSelfieContainer {
+}
+/* Face mask for the selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieFaceMask {
+}
+/* Frame that indicates the user's face area during selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieFaceFrame {
+}
+/* Webcam in the selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieWebcam {
+}
+/* Notifications in the selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieNotification {
+}
+/* Container for the capture button in the selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieCaptureButtonContainer {
+}
+/* Tutorial for the selfie capture on desktop. */
+.IncodeCaptureDesktopSelfieTutorial {
+}
+
+/* Incode Capture Document */
+/* Main container for the document capture. */
+.IncodeCaptureDocumentContainer {
+}
+/* Webcam view in the document capture. */
+.IncodeCaptureDocumentWebcam {
+}
+/* Retake option in the document capture. */
+.IncodeCaptureDocumentRetake {
+}
+/* Preview of the document capture. */
+.IncodeCaptureDocumentPreview {
+}
+/* Fake button shown after autocapture timeout in the document capture. */
+.IncodeCaptureDocumentFakeButton {
+}
+/* Notifications within the document capture. */
+.IncodeCaptureDocumentNotification {
+}
+
+/* Incode Capture ID */
+/* Main container for the ID capture. */
+.IncodeCaptureIdContainer {
+}
+/* Native button in the ID capture. */
+.IncodeCaptureIdNativeButton {
+}
+/* Image of a question mark in the ID capture. */
+.IncodeCaptureIdQuestionMarkImg {
+}
+/* Webcam view in the ID capture. */
+.IncodeCaptureIdWebcam {
+}
+/* Mask in the ID capture. */
+.IncodeCaptureIdMask {
+}
+/* Fake button shown after autocapture timeout in the ID capture. */
+.IncodeCaptureIdFakeButton {
+}
+/* Message in the fake button in the ID capture. */
+.IncodeCaptureIdFakeButtonMessage {
+}
+/* Arrow down in the fake button in the ID capture. */
+.IncodeCaptureIdFakeButtonArrowDown {
+}
+/* Image in the fake button in the ID capture. */
+.IncodeCaptureIdFakeButtonImage {
+}
+
+/* Incode Capture Selfie */
+/* Main container for the selfie capture. */
+.IncodeCaptureSelfieContainer {
+}
+/* Container for the capture button in the selfie capture. */
+.IncodeCaptureSelfieButtonContainer {
+}
+/* Webcam container for the selfie capture. */
+.IncodeCaptureSelfieWebcamContainer {
+}
+/* Border container for the selfie capture. */
+.IncodeCaptureSelfieBordersContainer {
+}
+/* Loading borders container for the selfie capture. */
+.IncodeCaptureSelfieLoadingBordersContainer {
+}
+/* Class used to hide certain elements or sections within the selfie capture. */
+.IncodeCaptureSelfieHidder {
+}
+/* Outer part of the oval-shaped camera frame in the selfie capture. */
+.IncodeCaptureSelfieCameraOvalOuter {
+}
+/* Preview image for the selfie capture. */
+.IncodeCaptureSelfiePreviewImage {
+}
+/* Webcam in the selfie capture. */
+.IncodeCaptureSelfieWebcam {
+}
+/* Text inside the oval-shaped camera frame in the selfie capture. */
+.IncodeCaptureSelfieCameraOvalInnerText {
+}
+/* Inline notifications that appear within the selfie capture. */
+.IncodeCaptureSelfieNotificationInline {
+}
+
+/* Incode Choose Camera */
+/* Main container for the camera selection component. */
+.IncodeChooseCameraContainer {
+}
+/* Title for the camera selection component. */
+.IncodeChooseCameraTitle {
+}
+/* Preview video for the camera selection component. */
+.IncodeChooseCameraPreviewVideo {
+}
+/* Camera selector in the camera selection component. */
+.IncodeChooseCameraSelector {
+}
+/* Button for the camera selection component. */
+.IncodeChooseCameraButton {
+}
+
+/* Incode Common Issues Modal */
+/* Main container for the common issues modal. */
+.IncodeCommonIssuesModal {
+}
+/* Container within the common issues modal. */
+.IncodeCommonIssuesModalContainer {
+}
+/* Instructions container within the common issues modal. */
+.IncodeCommonIssuesModalInstructionsContainer {
+}
+/* Button container within the common issues modal. */
+.IncodeCommonIssuesModalButtonContainer {
+}
+/* Try again container within the common issues modal. */
+.IncodeCommonIssuesModalTryAgainContainer {
+}
+/* Bottom text within the common issues modal. */
+.IncodeCommonIssuesModalBottomText {
+}
+/* Native camera button in the common issues modal */
+.IncodeCommonIssuesModalNativeCameraButton {
+}
+
+/* Incode Mask */
+/* Container for masks in a horizontal layout. */
+.IncodeMaskContainerHorizontal {
+}
+/* Container for passport mask */
+.IncodePassportMaskContainer {
+}
+/* Mask for passport-related UI. */
+.IncodePassportMask {
+}
+/* Mask for desktop-related UI. */
+.IncodeDesktopMask {
+}
+/* Main container for masks. */
+.IncodeMaskContainer {
+}
+/* Mask related to barcode UI. */
+.IncodeMaskBarcode {
+}
+
+/* Incode Native Camera */
+/* Retake action for native camera UI. */
+.IncodeNativeCameraRetake {
+}
+/* Main container for native camera UI. */
+.IncodeNativeCameraContainer {
+}
+/* Preview of the capture in the native camera UI. */
+.IncodeNativeCameraCapturePreview {
+}
+/* Label for button elements in the native camera UI. */
+.IncodeNativeCameraLabelButton {
+}
+/* Input for native camera UI. */
+.IncodeNativeCameraInput {
+}
+/* Button for native camera UI. */
+.IncodeNativeCameraButton {
+}
+/* Tutorial ID */
+.IncodeNativeCameraCaptureIdTutorial {
+}
+/* Tutorial selfie */
+.IncodeNativeSelfieTutorial {
+}
+
+/* Incode Enter Curp */
+/* Main container for the CURP (Personal ID code for Mexico) entry UI. */
+.IncodeEnterCurpContainer {
+}
+/* Status indicators for the CURP entry UI. */
+.IncodeEnterCurpStatus {
+}
+/* Title for the CURP entry UI. */
+.IncodeEnterCurpTitle {
+}
+/* Form for CURP entry. */
+.IncodeEnterCurpForm {
+}
+
+/* Incode Desktop Detected */
+/* Main container for desktop detection UI. */
+.IncodeDesktopDetectedContainer {
+}
+/* Image related to desktop detection. */
+.IncodeDesktopDetectedImage {
+}
+/* Text associated with desktop detection. */
+.IncodeDesktopDetectedText {
+}
+
+/* Incode Notifications */
+/* Notifications UI for Android devices. */
+.IncodeAndroidNotification {
+}
+/* Notifications UI for iOS devices. */
+.IncodeIOSNotification {
+}
+/* Fake permissions request modal UI. */
+.IncodeFakePermissionsRequestModal {
+}
+/* Container for messages within the fake permissions request modal. */
+.IncodeFakePermissionsRequestMessageContainer {
+}
+
+/* Incode QR Scanner Tutorial */
+/* Main container for the QR scanner tutorial. */
+.IncodeQrScannerTutorialContainer {
+}
+/* Title for the QR scanner tutorial. */
+.IncodeQrScannerTutorialTitle {
+}
+/* Subtitle for the QR scanner tutorial. */
+.IncodeQrScannerTutorialSubtitle {
+}
+/* Container for images within the QR scanner tutorial. */
+.IncodeQrScannerTutorialImageContainer {
+}
+/* Images for the QR scanner tutorial. */
+.IncodeQrScannerTutorialImage {
+}
+/* Button for the QR scanner tutorial. */
+.IncodeQrScannerTutorialButton {
+}
+/* Main container for the QR scanner. */
+.IncodeQrScannerContainer {
+}
+/* Instructions for the QR scanner. */
+.IncodeQrScannerInstructions {
+}
+/* Mask for the QR scanner. */
+.IncodeQrScannerMask {
+}
+/* Webcam for the QR scanner tutorial. */
+.IncodeQrScannerTutorialWebcam {
+}
+
+/* Incode Contract */
+/* Main container for contract UI. */
+.IncodeContractContainer {
+}
+/* Title for the contract. */
+.IncodeContractTitle {
+}
+/* Container for the contract text. */
+.IncodeContractTextContainer {
+}
+/* Contract text. */
+.IncodeContractText {
+}
+/* Container for the contract button. */
+.IncodeContractButtonContainer {
+}
+/* Button for the contract. */
+.IncodeContractButton {
+}
+
+/* Incode Recorder ID Mask */
+/* Main container for the ID mask in the recorder. */
+.IncodeRecorderIdMaskContainer {
+}
+/* Text for the ID mask in the recorder. */
+.IncodeRecorderIdMaskText {
+}
+/* Mask for capturing IDs in the recorder. */
+.IncodeRecorderCaptureIdMask {
+}
+
+/* Incode Recorder Microphone */
+/* Main container for the microphone in the recorder. */
+.IncodeRecorderMicrophoneContainer {
+}
+/* Image of the microphone in the recorder. */
+.IncodeRecorderMicrophoneImage {
+}
+
+/* Incode Recorder POA Mask */
+/* Main container for the POA (Proof of Address) mask in the recorder. */
+.IncodeRecorderPOAMaskContainer {
+}
+/* Top section of the POA mask in the recorder. */
+.IncodeRecorderPOAMaskTop {
+}
+/* Text for the POA mask in the recorder. */
+.IncodeRecorderPOAMaskText {
+}
+/* Bottom section of the POA mask in the recorder. */
+.IncodeRecorderPOAMaskBottom {
+}
+/* Button for the POA mask in the recorder. */
+.IncodeRecorderPOAMaskButton {
+}
+
+/* Incode Recorder Question Mask */
+/* Main container for the question mask in the recorder. */
+.IncodeRecorderQuestionMaskContainer {
+}
+/* Title for the question mask in the recorder. */
+.IncodeRecorderQuestionMaskTitle {
+}
+/* Button for the question mask in the recorder. */
+.IncodeRecorderQuestionMaskButton {
+}
+
+/* Incode Recorder Tutorial */
+/* Main container for the recorder tutorial. */
+.IncodeRecorderTutorialContainer {
+}
+/* Header for the recorder tutorial. */
+.IncodeRecorderTutorialHeader {
+}
+/* Title for the recorder tutorial. */
+.IncodeRecorderTutorialTitle {
+}
+/* Body of the recorder tutorial. */
+.IncodeRecorderTutorialBody {
+}
+/* Image in the recorder tutorial. */
+.IncodeRecorderTutorialImage {
+}
+/* Button for the recorder tutorial. */
+.IncodeRecorderTutorialButton {
+}
+
+/* Incode Video Recorder */
+/* Main container for the video recorder. */
+.IncodeVideoRecorderContainer {
+}
+/* Counter for the video recorder. */
+.IncodeVideoRecorderCounter {
+}
+/* Image indicating recording status in the video recorder. */
+.IncodeVideoRecorderRecordingImage {
+}
+/* Face mask in the video recorder. */
+.IncodeVideoRecorderFaceMask {
+}
+/* Face frame in the video recorder. */
+.IncodeVideoRecorderFaceFrame {
+}
+
+/* Incode Redirect */
+/* Main container for the redirect component. */
+.IncodeRedirectContainer {
+}
+/* Container for QR code items in the redirect component. */
+.IncodeRedirectQrItemContainer {
+}
+/* Title for the redirect component in mobile view. */
+.IncodeRedirectTitleMobile {
+}
+/* List in the redirect component in mobile view. */
+.IncodeRedirectListMobile {
+}
+/* Individual list item in the redirect component. */
+.IncodeRedirectItem {
+}
+/* Container for QR code in the redirect component. */
+.IncodeRedirectQrContainer {
+}
+/* QR code in the redirect component. */
+.IncodeRedirectQRCode {
+}
+/* Container for recommendations in the redirect component. */
+.IncodeRedirectContainerRecommendation {
+}
+/* Title for the redirect component. */
+.IncodeRedirectTitle {
+}
+/* List in the redirect component. */
+.IncodeRedirectList {
+}
+/* Paragraph text in the redirect component. */
+.IncodeRedirectParagraph1 {
+}
+.IncodeRedirectParagraph2 {
+}
+.IncodeRedirectParagraph3 {
+}
+/* Container for separator line in the redirect component. */
+.IncodeRedirectSeparatorContainer {
+}
+/* Vertical line in the redirect component. */
+.IncodeRedirectVerticalLine {
+}
+/* Container for "Send Verification" mobile in the redirect component. */
+.IncodeRedirectSendVerificationMobileContainer {
+}
+/* Message container for "Send Verification" mobile in the redirect component. */
+.IncodeRedirectSendVerificationMobileMessageContainer {
+}
+/* Image for "Send Verification" mobile in the redirect component. */
+.IncodeRedirectSendVerificationMobileImage {
+}
+/* Text for "Send Verification" mobile in the redirect component. */
+.IncodeRedirectSendVerificationMobileText {
+}
+/* List for "Send Verification" mobile in the redirect component. */
+.IncodeRedirectSendVerificationMobileList {
+}
+/* List item for "Send Verification" mobile in the redirect component. */
+.IncodeRedirectSendVerificationMobileListItem {
+}
+/* Container for "Send Verification" desktop in the redirect component. */
+.IncodeRedirectSendVerificationDesktopContainer {
+}
+/* Image for "Send Verification" desktop in the redirect component. */
+.IncodeRedirectSendVerificationDesktopImage {
+}
+/* Text for "Send Verification" desktop in the redirect component. */
+.IncodeRedirectSendVerificationDesktopText {
+}
+/* Container for "Send SMS" in the redirect component. */
+.IncodeRedirectSendSMSContainer {
+}
+/* Text for "Send SMS" in the redirect component. */
+.IncodeRedirectSendSMSText {
+}
+/* List for "Send SMS" in the redirect component. */
+.IncodeRedirectSendSMSList {
+}
+/* List item for "Send SMS" in the redirect component. */
+.IncodeRedirectSendSMSListItem {
+}
+/* Container for inputs in the redirect component. */
+.IncodeRedirectContainerInputs {
+}
+/* Input field in the redirect component. */
+.IncodeRedirectInput {
+}
+/* Container for SMS sent confirmation in the redirect component. */
+.IncodeRedirectSmsSentContainer {
+}
+/* Paragraph for SMS sent confirmation in the redirect component. */
+.IncodeRedirectSmsSentParagraph {
+}
+/* Paragraph for resend action in the redirect component. */
+.IncodeRedirectResendParagraph {
+}
+/* Footer for desktop view in the redirect component. */
+.IncodeRedirectFooterDesktop {
+}
+
+/* Incode Redirect Call Finished */
+/* Main container for the call finished UI in the redirect component. */
+.IncodeRedirectCallFinishedContainer {
+}
+/* Title for the call finished UI in the redirect component. */
+.IncodeRedirectCallFinishedTitle {
+}
+/* Subtitle for the call finished UI in the redirect component. */
+.IncodeRedirectCallFinishedSubtitle {
+}

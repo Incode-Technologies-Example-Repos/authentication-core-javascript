@@ -1,0 +1,18 @@
+{
+  "name": "onboarding-core-javascript",
+  "version": "1.0.0",
+  "description": "Simple JS integration for the Incode WebSDK",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.5.3",
+    "vite-plugin-mkcert": "^1.16.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
