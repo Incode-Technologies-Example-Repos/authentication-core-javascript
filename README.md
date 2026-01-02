@@ -12,6 +12,49 @@ This project demonstrates a secure face authentication flow using Incode's WebSD
 
 This example showcases best practices for implementing face authentication in a web application with proper security measures.
 
+## Authentication Flow
+
+```mermaid
+sequenceDiagram
+    participant Frontend
+    participant Backend
+    participant IncodeAPI
+    participant IndexedDB
+
+    Note over Frontend: Enter hint:<br> email/phone/identityId
+    Frontend->>Backend: Start Session in Backend
+    Backend->>IncodeAPI: Create new session<br>{configurationId, apikey}
+    Note over IncodeAPI: /omni/start
+    IncodeAPI-->>Backend: Returns Session<br>{token, interviewId}
+    Backend->>IndexedDB: Store session<br>{key: interviewId, backToken: token, used: false)
+    Backend-->>Frontend: Return Session<br>{token, interviewId}
+    
+    Note over Frontend: renderAuthFace(token, hint)
+    Note over Frontend: User completes face authentication
+    Note over Frontend:Returns:<br>{candidateId}
+    
+    
+    Frontend->>Backend: Mark Session as Completed<br>{token}
+    Note over IncodeAPI: /0/omni/finish-status 
+    Backend->>IncodeAPI: Get finish status
+    IncodeAPI-->>Backend: Return:<br>{redirectionUrl, action}//Unused
+    
+    Frontend->>Backend: Validate Authentication<br>{interviewId, token, candidateId}
+    Backend->>IndexedDB: Get Session Info:<br>{key:interviewId}
+    IndexedDB-->>Backend:  {backToken, used}
+    Note over Backend: Validate interviewId exists in DB
+    Note over Backend: Validate Session wasn't Used<br>used != True
+    Note over Backend: Validate tokens match<br>token === backToken
+    Backend->>IncodeAPI: Get Authentication Score<br>{token:backToken}
+    Note over IncodeAPI: /0/omni/get/score
+    IncodeAPI-->>Backend: {status, identityId}
+    Note over Backend: Validate candidateId matches identityId<br> candidateId === identityId
+    Note over Backend: Validate Score is OK:<br>status === "OK"
+    Backend->>IndexedDB: Mark session as used<br>{interviewId, used:true}
+    Backend-->>Frontend: Return validation result<br>{message, valid, identityId}
+    Note over Frontend: Show validation results
+```
+
 # Requirements
 Vite requires Node.js version 14.18+, 16+. some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
 
