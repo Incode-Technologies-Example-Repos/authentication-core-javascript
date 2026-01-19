@@ -1,8 +1,11 @@
-import { fakeBackendStart, fakeBackendFinish, fakeBackendValidateAuthentication } from "./fake_backend";
+/* main.js */
+
+/** Example Backend, this functions should be replaced with your actual backend implementation **/
+import exampleBackend from "./example_backend";
 
 let incodeSDKInstance;
 let incodeSession;
-let candidateId;
+let candidate;
 
 const cameraContainer = document.getElementById("camera-container");
 
@@ -22,7 +25,7 @@ async function authenticate() {
   const userHintDiv = document.getElementById("user-hint-container");
   userHintDiv.style.display = "none";
 
-  incodeSession = await fakeBackendStart();
+  incodeSession = await exampleBackend.start();
   renderAuthentication(hintInput.value);
 }
 
@@ -50,30 +53,26 @@ function finishAuthentication(response) {
     }
    */
 
-  candidateId = response.candidate; // Store candidate globally
+  candidate = response.candidate; // Store candidate globally
 
-  fakeBackendFinish(incodeSession.token)
-    .then((backendResponse) => {
-      console.log(backendResponse);
-      const container = document.getElementById("finish-container");
-      container.innerHTML = `
-        <h1>Authentication Finished</h1>
-        <p><strong>Overall Status:</strong> ${response.overallStatus}</p>
-        <p><strong>Candidate:</strong> ${response.candidate}</p>
+  const container = document.getElementById("finish-container");
+  container.innerHTML = `
+        <h1>Authentication Process Finished</h1>
+        <p><strong>Candidate:</strong> ${candidate}</p>
         <button id="verify-authentication-btn">Verify Authentication</button>
       `;
-      document.getElementById("verify-authentication-btn").addEventListener("click", verifyAuthentication);
-    })
-    .catch((e) => {
-      showError(e);
-    });
+  document.getElementById("verify-authentication-btn").addEventListener("click", verifyAuthentication);
 }
 
 // 4.- Verify the authentication against the score
 async function verifyAuthentication() {
-  console.log("Verifying authentication for candidateId:", candidateId);
+  console.log("Verifying authentication for candidate:", candidate);
   try {
-    const validationResult = await fakeBackendValidateAuthentication(incodeSession.interviewId, incodeSession.token, candidateId);
+    const validationResult = await exampleBackend.verifyAuthentication(
+      incodeSession.interviewId,
+      incodeSession.token,
+      candidate,
+    );
     console.log("Validation result:", validationResult);
 
     const container = document.getElementById("finish-container");
@@ -81,12 +80,12 @@ async function verifyAuthentication() {
       <hr>
       <h2>Authentication Verification</h2>
       <p><strong>Interview ID:</strong> ${incodeSession.interviewId}</p>
-      <p><strong>Candidate ID:</strong> ${candidateId}</p>
-      <p><strong>Identity ID:</strong> ${validationResult.identityId || 'N/A'}</p>
+      <p><strong>Candidate:</strong> ${candidate}</p>
+      <p><strong>Identity ID:</strong> ${validationResult.identityId || "N/A"}</p>
       <p><strong>Message:</strong> ${validationResult.message}</p>
       <p><strong>Authentication Valid:</strong> <span style="color: ${validationResult.valid ? "green" : "red"}; font-weight: bold;">${
-      validationResult.valid ? "✓ VALID" : "✗ INVALID"
-    }</span></p>
+        validationResult.valid ? "✓ VALID" : "✗ INVALID"
+      }</span></p>
     `;
     document.getElementById("verify-authentication-btn").addEventListener("click", verifyAuthentication);
   } catch (e) {

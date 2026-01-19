@@ -1,11 +1,11 @@
 # Face Authentication Validation Example
 This project demonstrates a secure face authentication flow using Incode's WebSDK with proper validation and session management. The application implements:
 
-- **User hint input** for authentication (customer ID, email, or phone)
+- **User hint input** for authentication (customerId, email, or phone)
 - **Face authentication** using Incode's renderAuthFace SDK
 - **Session management** with IndexedDB to prevent reuse
 - **Backend validation** to verify authentication integrity by:
-  - Matching candidate ID from the SDK with identity ID from the score API
+  - Matching candidate from the SDK with identityId from the score API
   - Validating overall authentication status
   - Preventing token tampering and session replay attacks
   - Marking sessions as used to prevent reuse
@@ -22,6 +22,7 @@ sequenceDiagram
     participant IndexedDB
 
     Note over Frontend: Enter hint:<br> email/phone/identityId
+    Note over Frontend: WebSDK: create()
     Frontend->>Backend: Start Session in Backend
     Backend->>IncodeAPI: Create new session<br>{configurationId, apikey}
     Note over IncodeAPI: /omni/start
@@ -29,9 +30,9 @@ sequenceDiagram
     Backend->>IndexedDB: Store session<br>{key: interviewId, backToken: token, used: false)
     Backend-->>Frontend: Return Session<br>{token, interviewId}
     
-    Note over Frontend: renderAuthFace(token, hint)
+    Note over Frontend: WebSDK: renderAuthFace(token, hint)
     Note over Frontend: User completes face authentication
-    Note over Frontend:Returns:<br>{candidateId}
+    Note over Frontend:Returns:<br>{candidate}
     
     
     Frontend->>Backend: Mark Session as Completed<br>{token}
@@ -39,7 +40,7 @@ sequenceDiagram
     Backend->>IncodeAPI: Get finish status
     IncodeAPI-->>Backend: Return:<br>{redirectionUrl, action}//Unused
     
-    Frontend->>Backend: Validate Authentication<br>{interviewId, token, candidateId}
+    Frontend->>Backend: Validate Authentication<br>{interviewId, token, candidate}
     Backend->>IndexedDB: Get Session Info:<br>{key:interviewId}
     IndexedDB-->>Backend:  {backToken, used}
     Note over Backend: Validate interviewId exists in DB
@@ -48,7 +49,7 @@ sequenceDiagram
     Backend->>IncodeAPI: Get Authentication Score<br>{token:backToken}
     Note over IncodeAPI: /0/omni/get/score
     IncodeAPI-->>Backend: {status, identityId}
-    Note over Backend: Validate candidateId matches identityId<br> candidateId === identityId
+    Note over Backend: Validate candidate matches identityId<br> candidate === identityId
     Note over Backend: Validate Score is OK:<br>status === "OK"
     Backend->>IndexedDB: Mark session as used<br>{interviewId, used:true}
     Backend-->>Frontend: Return validation result<br>{message, valid, identityId}
@@ -87,7 +88,7 @@ sample includes a `fake_backend.js` file that handles backend operations in the 
 - `fakeBackendValidateAuthentication()` - Validates the authentication by:
   - Checking if the session exists and hasn't been used
   - Verifying the token matches the stored token
-  - Comparing candidate ID with identity ID from the score
+  - Comparing candidate with identityId from the score
   - Ensuring overall status is "OK"
   - Marking the session as used to prevent reuse
 
