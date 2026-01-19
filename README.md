@@ -21,37 +21,40 @@ sequenceDiagram
     participant IncodeAPI
     participant IndexedDB
 
-    Note over Frontend: Enter hint:<br> email/phone/identityId
+    Note over Frontend: Enter hint:<br> identityId
     Note over Frontend: WebSDK: create()
     Frontend->>Backend: Start Session in Backend
     Backend->>IncodeAPI: Create new session<br>{configurationId, apikey}
     Note over IncodeAPI: /omni/start
     IncodeAPI-->>Backend: Returns Session<br>{token, interviewId}
-    Backend->>IndexedDB: Store session<br>{key: interviewId, backToken: token, used: false)
+    Backend->>IndexedDB: Store session<br>{key: interviewId, backToken: token, status: pending, identityId)
     Backend-->>Frontend: Return Session<br>{token, interviewId}
     
     Note over Frontend: WebSDK: renderAuthFace(token, hint)
     Note over Frontend: User completes face authentication
     Note over Frontend:Returns:<br>{candidate}
-    
-    
-    Frontend->>Backend: Mark Session as Completed<br>{token}
-    Note over IncodeAPI: /0/omni/finish-status 
-    Backend->>IncodeAPI: Get finish status
-    IncodeAPI-->>Backend: Return:<br>{redirectionUrl, action}//Unused
-    
+     
     Frontend->>Backend: Validate Authentication<br>{interviewId, token, candidate}
     Backend->>IndexedDB: Get Session Info:<br>{key:interviewId}
     IndexedDB-->>Backend:  {backToken, used}
     Note over Backend: Validate interviewId exists in DB
-    Note over Backend: Validate Session wasn't Used<br>used != True
-    Note over Backend: Validate tokens match<br>token === backToken
+    Note over Backend: Validate Session isn't already verified<br>status = pending 
+    Note over Backend: Validate<br>candidate = session.identityId
+    Note over Backend: Validate tokens match<br>token = backToken
+
+   Note over Backend,IndexedDB: Under any error or failed validation
+   Backend->>IndexedDB: Mark session as Rejected<br>{interviewId, status:rejected}
+
+    Backend->>IncodeAPI: Mark session as completed
+    Note over IncodeAPI: /0/omni/finish-status 
+    IncodeAPI-->>Backend: Return:<br>{redirectionUrl, action}//Unused
+
     Backend->>IncodeAPI: Get Authentication Score<br>{token:backToken}
     Note over IncodeAPI: /0/omni/get/score
     IncodeAPI-->>Backend: {status, identityId}
-    Note over Backend: Validate candidate matches identityId<br> candidate === identityId
-    Note over Backend: Validate Score is OK:<br>status === "OK"
-    Backend->>IndexedDB: Mark session as used<br>{interviewId, used:true}
+    Note over Backend: Validate candidate matches identityId<br> candidate = identityId
+    Note over Backend: Validate Score is OK:<br>score.status = "OK"
+    Backend->>IndexedDB: Mark session as used<br>{interviewId, status:approved}
     Backend-->>Frontend: Return validation result<br>{message, valid, identityId}
     Note over Frontend: Show validation results
 ```
