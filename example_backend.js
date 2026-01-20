@@ -8,9 +8,9 @@ const defaultHeader = {
   "api-version": "1.0",
 };
 
-// Call Incode's `omni/start` API to create an Incode session which will include a
+// Public: Call Incode's `omni/start` API to create an Incode session which will include a
 // token in the response.
-const fakeBackendStart = async function () {
+const start = async function (identityId) {
   const url = `${apiurl}/omni/start`;
   const params = {
     configurationId: flowid,
@@ -34,13 +34,114 @@ const fakeBackendStart = async function () {
   const { token, interviewId } = responseData;
 
   // Store session in local DB, session will be created as used: false.
-  await addSession(interviewId, token);
+  await addSession(interviewId, token, identityId);
 
   return { token, interviewId };
 };
 
-// Finishes the session started at /start
-const fakeBackendFinish = async function (token) {
+// Public: Verify the authentication by checking the score and session data
+const verifyAuthentication = async function (interviewId, token, candidate) {
+  const session = await getSession(interviewId);
+
+  // Prevents usage of session that doesn't exist.
+  if (!session) {
+    return {
+      // Detailed debug message, in production you might want to avoid exposing internal details.
+      message: "No session found for interviewId " + interviewId,
+      valid: false,
+    };
+  }
+  
+  // Prevents reuse of the same session.
+  if (session.status !== "pending") {
+    return {
+      // Detailed debug message, in production you might want to avoid exposing internal details.
+      message: "Session already used for interviewId " + interviewId,
+      valid: false,
+    };
+  }
+
+  // Prevents usage of token from another interviewId.
+  if (session.token !== token) {
+    // Mark the session as rejected.
+    await updateSession(interviewId, "rejected");
+    return {
+      // Detailed debug message, in production you might want to avoid exposing internal details.
+      message: "Token mismatch for interviewId " + interviewId,
+      valid: false,
+    };
+  }
+
+  // Prevents usage of candidate that doesn't match the identityId stored in session.
+  if (session.identityId !== candidate) {
+    // Mark the session as rejected.
+    await updateSession(interviewId, "rejected");
+    return {
+      // Detailed debug message, in production you might want to avoid exposing internal details.
+      message: "identityId and candidate mismatch for interviewId " + interviewId,
+      valid: false,
+    };
+  }
+
+  // Finishing the session stop it from being changed further and triggers score calculation and business rules.
+  await finish(token); // Mark session as finished in Incode backend
+  
+  let identityId, scoreStatus;
+  try {
+    // At this point we already verified that the token matches, but
+    // to be clear about our intentions, we use the token stored in the
+    // database to get the identityId and compare it with the candidate.
+    const scoreResponse = await getScore(session.token);
+    identityId = scoreResponse.authentication.identityId;
+    scoreStatus = scoreResponse.overall.status;
+  } catch (e) {
+    // Mark the session as rejected.
+    await updateSession(interviewId, "rejected");
+    // If there is an error communicating with API, we consider validation failed.
+    return {
+      // Detailed debug message, in production you might want to avoid exposing internal details.
+      message: "Error validating authentication for interviewId " + interviewId + ": " + e.message,
+      valid: false,
+    };
+  }
+
+  // renderFaceAuth returns candidate, which should match identityId from score,
+  // this prevents tampering of the identityId in the frontend.
+  if (identityId !== candidate) {
+    // Mark the session as rejected.
+    await updateSession(interviewId, "rejected");
+    return {
+      // Detailed debug message, in production you might want to avoid exposing internal details.
+      message: "Session data doesn't match for interviewId " + interviewId,
+      valid: false,
+    };
+  }
+
+  // If backend score overall status is not OK, validation fails.
+  if (scoreStatus !== "OK") {
+    // Mark the session as rejected.
+    await updateSession(interviewId, "rejected");
+    return {
+      // Detailed debug message, in production you might want to avoid exposing internal details.
+      message: "Face Validation failed for interviewId " + interviewId,
+      valid: false,
+    };
+  }
+
+  // Mark the session as approved since all checks passed.
+  await updateSession(interviewId, "approved");
+
+  // Only valid if all checks passed, we return the identityId that was validated.
+  return {
+    // Detailed debug message, in production you might want to avoid exposing internal details.
+    message: "Face Validation succeeded for interviewId " + interviewId,
+    valid: true,
+    identityId: identityId,
+  };
+};
+
+// Private: Calls Incode's `omni/finish-status` API mark the session as finished
+const finish = async function (token) {
   const url = `${apiurl}/omni/finish-status`;
 
   let sessionHeaders = { ...defaultHeader };
@@ -59,77 +160,8 @@ const fakeBackendFinish = async function (token) {
   return { redirectionUrl, action };
 };
 
-const fakeBackendValidateAuthentication = async function (interviewId, token, candidateId) {
-  const session = await getSession(interviewId);
-
-  if (!session) {
-    return {
-      message: "No session found for interviewId " + interviewId,
-      valid: false,
-    };
-  }
-  // Prevents reuse of the same session.
-  if (session.used) {
-    return {
-      message: "Session already used for interviewId " + interviewId,
-      valid: false,
-    };
-  }
-
-  // Prevents usage of token from another interviewId.
-  if (session.token !== token) {
-    return {
-      message: "Token mismatch for interviewId " + interviewId,
-      valid: false,
-    };
-  }
-  
-  let identityId, scoreStatus;
-  try {
-    // At this point we already verified that the token matches, but
-    // to be clear about our intentions, we use the token stored in the
-    // database to get the identityId and compare it with the candidateId.
-    const scoreResponse = await fakeBackendGetScore(session.token);
-    identityId = scoreResponse.authentication.identityId;
-    scoreStatus = scoreResponse.overall.status;
-  } catch (e) {
-    // If there is an error communicating with API, we consider validation failed.
-    return {
-      message: "Error validating authentication for interviewId " + interviewId + ": " + e.message,
-      valid: false,
-    };
-  }
-
-  // renderFaceAuth returns candidateId, which should match identityId from score,
-  // this prevents tampering of the identityId in the frontend.
-  if (identityId !== candidateId) {
-    return {
-      message: "Session data doesn't match for interviewId " + interviewId,
-      valid: false,
-    };
-  }
-
-  // If backend score overall status is not OK, validation fails.
-  if (scoreStatus !== "OK") {
-    return {
-      message: "Face Validation failed for interviewId " + interviewId,
-      valid: false,
-    };
-  }
-
-  // Mark session as used so it can't be used again
-  await markSessionAsUsed(interviewId);
-
-  // Only valid if all checks passed, we return the identityId that was validated.
-  return {
-    message: "Face Validation succeeded for interviewId " + interviewId,
-    valid: true,
-    identityId: identityId,
-  };
-};
-
-// Finishes the session started at /start
-const fakeBackendGetScore = async function (token) {
+// Private: Call Incode's `omni/get/score` API to retrieve the score for the session
+const getScore = async function (token) {
   const url = `${apiurl}/omni/get/score`;
 
   let sessionHeaders = { ...defaultHeader };
@@ -234,7 +266,7 @@ async function getSession(interviewId) {
 }
 
 // Add a new session to the database
-async function addSession(interviewId, token) {
+async function addSession(interviewId, token, identityId) {
   const db = await initDB();
   return new Promise((resolve, reject) => {
     const transaction = db.transaction([STORE_NAME], "readwrite");
@@ -242,7 +274,8 @@ async function addSession(interviewId, token) {
     const session = {
       interviewId,
       token,
-      used: false,
+      identityId,
+      status: "pending",
       timestamp: new Date().toISOString(),
     };
     const request = objectStore.add(session);
@@ -253,7 +286,12 @@ async function addSession(interviewId, token) {
 }
 
 // Update validation status for a session
-async function markSessionAsUsed(interviewId) {
+async function updateSession(interviewId, status) {
+  
+  if (status !== "rejected" && status !== "approved") {
+    throw new Error("Invalid status. Must be 'rejected' or 'approved'.");
+  }
+  
   const db = await initDB();
   return new Promise((resolve, reject) => {
     const transaction = db.transaction([STORE_NAME], "readwrite");
@@ -263,7 +301,7 @@ async function markSessionAsUsed(interviewId) {
     getRequest.onsuccess = () => {
       const session = getRequest.result;
       if (session) {
-        session.used = true;
+        session.status = status;
         const updateRequest = objectStore.put(session);
         updateRequest.onsuccess = () => resolve(session);
         updateRequest.onerror = () => reject(updateRequest.error);
@@ -275,4 +313,5 @@ async function markSessionAsUsed(interviewId) {
   });
 }
 
-export { fakeBackendStart, fakeBackendFinish, fakeBackendGetScore, fakeBackendValidateAuthentication };
+const exampleBackend = { start, verifyAuthentication }
+export default exampleBackend;
