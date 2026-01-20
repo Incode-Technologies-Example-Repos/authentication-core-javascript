@@ -23,7 +23,7 @@ sequenceDiagram
 
     Note over Frontend: Enter hint:<br> identityId
     Note over Frontend: WebSDK: create()
-    Frontend->>Backend: Start Session in Backend
+    Frontend->>Backend: Start Session in Backend<br>{identityId}
     Backend->>IncodeAPI: Create new session<br>{configurationId, apikey}
     Note over IncodeAPI: /omni/start
     IncodeAPI-->>Backend: Returns Session<br>{token, interviewId}
