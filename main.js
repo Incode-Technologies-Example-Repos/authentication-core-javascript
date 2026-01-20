@@ -24,9 +24,10 @@ async function authenticate() {
   const hintInput = document.getElementById("user-hint-input");
   const userHintDiv = document.getElementById("user-hint-container");
   userHintDiv.style.display = "none";
-
-  incodeSession = await exampleBackend.start();
-  renderAuthentication(hintInput.value);
+  
+  const identityId = hintInput.value;
+  incodeSession = await exampleBackend.start(identityId);
+  renderAuthentication(identityId);
 }
 
 // 2.- Render the face authentication

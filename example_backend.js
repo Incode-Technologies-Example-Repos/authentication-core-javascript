@@ -78,7 +78,7 @@ const verifyAuthentication = async function (interviewId, token, candidate) {
     await updateSession(interviewId, "rejected");
     return {
       // Detailed debug message, in production you might want to avoid exposing internal details.
-      message: "Token identityId and candidate mismatch for interviewId " + interviewId,
+      message: "identityId and candidate mismatch for interviewId " + interviewId,
       valid: false,
     };
   }
