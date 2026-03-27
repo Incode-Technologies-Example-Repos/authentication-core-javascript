@@ -90,11 +90,11 @@ sample includes an `example_backend.js` file that handles backend operations in 
 
 ## Key Backend Functions
 
-- `start(identityId)` - Calls Incode's `/omni/start` API to create a new session and returns the session `token`
+- `start(identityId)` - Calls Incode's `/0/omni/start` API to create a new session and returns the session `token`
 - `getResults(token, candidate)` - Verifies the authentication by:
-  - Finishing the session via `/omni/finish-status` to trigger score calculation
-  - Closing the session via `/omni/session/status/set?action=Closed` to freeze the score
-  - Retrieving the score via `/omni/get/score`
+  - Finishing the session via `/0/omni/finish-status` to trigger score calculation
+  - Closing the session via `/0/omni/session/status/set?action=Closed` to freeze the score
+  - Retrieving the score via `/0/omni/get/score`
   - Comparing `candidate` (from the WebSDK) with `identityId` from the score to prevent tampering
   - Checking that the overall score status is "OK"
 
