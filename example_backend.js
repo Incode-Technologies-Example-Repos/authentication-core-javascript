@@ -89,7 +89,7 @@ const getResults = async function (token, candidate) {
 
 // Private: Calls Incode's `omni/finish-status` API mark the session as finished
 const finishStatus = async function (token) {
-  const url = `${apiurl}/omni/finish-status`;
+  const url = `${apiurl}/0/omni/finish-status`;
 
   let sessionHeaders = { ...defaultHeader };
   sessionHeaders["X-Incode-Hardware-Id"] = token;
@@ -138,7 +138,7 @@ const setStatusClosed = async function (token) {
 
 // Private: Call Incode's `omni/get/score` API to retrieve the score for the session
 const getScore = async function (token) {
-  const url = `${apiurl}/omni/get/score`;
+  const url = `${apiurl}/0/omni/get/score`;
 
   let sessionHeaders = { ...defaultHeader };
   sessionHeaders["X-Incode-Hardware-Id"] = token;
