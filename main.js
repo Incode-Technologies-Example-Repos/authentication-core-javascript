@@ -86,7 +86,6 @@ async function getResults() {
         results.isValid ? "✓ VALID" : "✗ INVALID"
       }</span></p>
     `;
-    document.getElementById("get-results-btn").addEventListener("click", getResults);
   } catch (e) {
     showError(e);
   }

@@ -96,7 +96,7 @@ const finishStatus = async function (token) {
 
   let response;
   try {
-    response = await fetch(url, { method: "POST", body: "{}", headers: sessionHeaders });
+    response = await fetch(url, { method: "POST", body: JSON.stringify({}), headers: sessionHeaders });
     if (!response.ok) {
       throw new Error("Request failed with code " + response.status);
     }
@@ -116,7 +116,7 @@ const setStatusClosed = async function (token) {
 
   let response;
   try {
-    response = await fetch(url, { method: "POST", body: "{}", headers: sessionHeaders });
+    response = await fetch(url, { method: "POST", body: JSON.stringify({}), headers: sessionHeaders });
     if (!response.ok) {
       throw new Error("Request failed with code " + response.status);
     }
