@@ -1,6 +1,6 @@
 # Face Authentication Validation Example
 
-This project demonstrates a secure face authentication flow using Incode's WebSDK with proper validation and session management. The application implements:
+This project demonstrates a secure face authentication flow using Incode's WebSDK with proper backend validation. The application implements:
 
 - **User hint input** for authentication (identityId)
 - **Face authentication** using Incode's renderAuthFace SDK
