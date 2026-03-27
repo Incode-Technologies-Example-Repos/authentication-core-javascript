@@ -87,7 +87,7 @@ const getResults = async function (token, candidate) {
   };
 };
 
-// Private: Calls Incode's `omni/finish-status` API mark the session as finished
+// Private: Calls Incode's `/0/omni/finish-status` API to mark the session as finished
 const finishStatus = async function (token) {
   const url = `${apiurl}/0/omni/finish-status`;
 
