@@ -107,6 +107,7 @@ async function app() {
     //   },
     // };
 
+    /* Create the WebSDK instance */
     const apiURL = import.meta.env.VITE_API_URL;
     incodeSDKInstance = window.OnBoarding.create({
       apiURL: apiURL,
