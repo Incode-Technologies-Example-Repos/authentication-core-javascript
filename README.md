@@ -20,58 +20,42 @@ sequenceDiagram
     participant Frontend
     participant Backend
     participant IncodeAPI
-    participant IndexedDB
 
-    Note over Frontend: Enter hint:<br> identityId
+    Note over Frontend: Enter hint:<br>identityId
     Note over Frontend: WebSDK: create()
     Frontend->>Backend: Start Session in Backend<br>{identityId}
     Backend->>IncodeAPI: Create new session<br>{configurationId, apikey}
     Note over IncodeAPI: /omni/start
-    IncodeAPI-->>Backend: Returns Session<br>{token, interviewId}
-    Backend->>IndexedDB: Store session<br>{key: interviewId, backToken: token, status: pending, identityId)
-    Backend-->>Frontend: Return Session<br>{token, interviewId}
+    IncodeAPI-->>Backend: Returns Session<br>{token}
+    Backend-->>Frontend: Return Session<br>{token}
 
     Note over Frontend: WebSDK: renderAuthFace(token, hint)
     Note over Frontend: User completes face authentication
     Note over Frontend:Returns:<br>{candidate}
 
-    Frontend->>Backend: Validate Authentication<br>{interviewId, token, candidate}
-    Backend->>IndexedDB: Get Session Info:<br>{key:interviewId}
-    IndexedDB-->>Backend:  {backToken, status}
-    alt interviewId doesn't exist in DB
-      Backend->>Frontend: {"interviewId doesn't exists", valid:false}
-    end
-    alt status != pending
-      Backend->>Frontend: { "Session was already verified", valid:false}
-    end
-    alt candidate != session.identityId
-      Backend->>IndexedDB: Mark session as Rejected<br>{interviewId, status:rejected}
-      Backend->>Frontend: {"Stored identityId doesn't match candidate", valid:false}
-    end
-    alt token != backToken
-      Backend->>IndexedDB: Mark session as Rejected<br>{interviewId, status:rejected}
-      Backend->>Frontend: {"Stored token doesn't match token", valid:false}
-    end
-   
+    Frontend->>Backend: Get Results<br>{token, candidate}
+  
     Backend->>IncodeAPI: Mark session as completed
     Note over IncodeAPI: /0/omni/finish-status
     IncodeAPI-->>Backend: Return:<br>{redirectionUrl, action}//Unused
 
+    Backend->>IncodeAPI: Close Session
+    Note over IncodeAPI: /0/omni/set/status?action=Closed
+    IncodeAPI-->>Backend: Return:<br>{sessionStatus}//Unused
+
     Backend->>IncodeAPI: Get Authentication Score<br>{token:backToken}
     Note over IncodeAPI: /0/omni/get/score
-    IncodeAPI-->>Backend: {status, identityId}
+    IncodeAPI-->>Backend: {score, identityId}
     alt identityId != candidate
-      Backend->>IndexedDB: Mark session as Rejected<br>{interviewId, status:rejected}
-      Backend->>Frontend: {"candidate doesn't matches score identityId", valid:false}
+      Backend->>Frontend: {"candidate doesn't matches score identityId", isVvalid:false}
     end
+    
     alt score.status != "OK"
-      Backend->>IndexedDB: Mark session as Rejected<br>{interviewId, status:rejected}
-      Backend->>Frontend: {"Score for this session is not OK", valid:false}
+      Backend->>Frontend: {"Score for this session is not OK", isValid:false}
     end
 
     Note over Backend: Success
-    Backend->>IndexedDB: Mark session as approved<br>{interviewId, status:approved}
-    Backend-->>Frontend: Return validation result<br>{"Succesful validation", valid:true, identityId}
+    Backend-->>Frontend: Return validation result<br>{"Succesful validation", isValid:true, identityId}
     Note over Frontend: Show validation results
 ```
 

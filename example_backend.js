@@ -31,39 +31,22 @@ const start = async function (identityId) {
 
   // The session response has many values, but you should only pass the token to the frontend.
   const responseData = await response.json();
-  const { token, interviewId } = responseData;
+  const { token } = responseData;
 
-  // Store session in local DB, session will be created as used: false.
-  await addSession(interviewId, token, identityId);
-
-  return { token, interviewId };
+  return { token };
 };
 
 // Public: Verify the authentication by checking the score and session data
-const getResults = async function (interviewId, token, candidate) {
-
-  // Prevents usage of candidate that doesn't match the identityId stored in session.
-  if (session.identityId !== candidate) {
-    // Mark the session as rejected.
-    await updateSession(interviewId, "rejected");
-    return {
-      // Detailed debug message, in production you might want to avoid exposing internal details.
-      message: "identityId and candidate mismatch for interviewId " + interviewId,
-      isValid: false,
-    };
-  }
+const getResults = async function (token, candidate) {
 
   // Finishing the session triggers score calculation and business rules.
   await finishStatus(token); // Mark session as finished in Incode backend
+  
   // Closing the session stop it from being changed, all /add/ endpoints will be rejected after this, and the score will be frozen.
   await setStatusClosed(token); // Mark session as closed in Incode backend
   
-  
   let identityId, scoreStatus;
   try {
-    // At this point we already verified that the token matches, but
-    // to be clear about our intentions, we use the token stored in the
-    // database to get the identityId and compare it with the candidate.
     const scoreResponse = await getScore(token);
     identityId = scoreResponse.authentication.identityId;
     scoreStatus = scoreResponse.overall.status;
@@ -71,7 +54,7 @@ const getResults = async function (interviewId, token, candidate) {
     // If there is an error communicating with API, we consider validation failed.
     return {
       // Detailed debug message, in production you might want to avoid exposing internal details.
-      message: "Error validating authentication for interviewId " + interviewId + ": " + e.message,
+      message: "Error validating authentication: " + e.message,
       isValid: false,
     };
   }
@@ -81,7 +64,7 @@ const getResults = async function (interviewId, token, candidate) {
   if (identityId !== candidate) {
     return {
       // Detailed debug message, in production you might want to avoid exposing internal details.
-      message: "Session data doesn't match for interviewId " + interviewId,
+      message: "candidate " + candidate + " does not match identityId " + identityId + " from score",
       isValid: false,
     };
   }
@@ -90,7 +73,7 @@ const getResults = async function (interviewId, token, candidate) {
   if (scoreStatus !== "OK") {
     return {
       // Detailed debug message, in production you might want to avoid exposing internal details.
-      message: "Face Validation failed for interviewId " + interviewId,
+      message: "Face Validation failed for candidate " + candidate,
       isValid: false,
     };
   }
@@ -98,7 +81,7 @@ const getResults = async function (interviewId, token, candidate) {
   // Only valid if all checks passed, we return the identityId that was validated.
   return {
     // Detailed debug message, in production you might want to avoid exposing internal details.
-    message: "Face Validation succeeded for interviewId " + interviewId,
+    message: "Face Validation succeeded for candidate " + candidate,
     isValid: true,
     identityId: identityId,
   };
@@ -140,9 +123,17 @@ const setStatusClosed = async function (token) {
   } catch (e) {
     throw new Error("HTTP Post Error: " + e.message);
   }
-  const results = await response.json();
-  console.log({results});
-  return results;
+  const {sessionStatus} = await response.json();
+  /* Example response
+    {
+      "_id": "69c5c01ac40764536244ac3b",
+      "_createdAt": 1774567450715,
+      "_updatedAt": 1774567469629,
+      "closedAt": 1774567469629,
+      "sessionStatus": "Closed"
+    }
+  */
+  return {sessionStatus};
 };
 
 // Private: Call Incode's `omni/get/score` API to retrieve the score for the session

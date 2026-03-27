@@ -70,9 +70,8 @@ async function getResults() {
   console.log("Getting results of the authentication");
   try {
     const results = await exampleBackend.getResults(
-      incodeSession.interviewId,
       incodeSession.token,
-      candidate,
+      candidate
     );
     console.log("Result:", results);
 
@@ -80,7 +79,6 @@ async function getResults() {
     container.innerHTML += `
       <hr>
       <h2>Authentication Verification</h2>
-      <p><strong>Interview ID:</strong> ${incodeSession.interviewId}</p>
       <p><strong>Candidate:</strong> ${candidate}</p>
       <p><strong>Identity ID:</strong> ${results.identityId || "N/A"}</p>
       <p><strong>Message:</strong> ${results.message}</p>
