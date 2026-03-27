@@ -2,14 +2,12 @@
 
 This project demonstrates a secure face authentication flow using Incode's WebSDK with proper validation and session management. The application implements:
 
-- **User hint input** for authentication (customerId, email, or phone)
+- **User hint input** for authentication (identityId)
 - **Face authentication** using Incode's renderAuthFace SDK
-- **Session management** with IndexedDB to prevent reuse
 - **Backend validation** to verify authentication integrity by:
   - Matching candidate from the SDK with identityId from the score API
-  - Validating overall authentication status
-  - Preventing token tampering and session replay attacks
-  - Marking sessions as used to prevent reuse
+  - Validating overall status to be OK
+  - Closing sessions to prevent modification
 
 This example showcases best practices for implementing face authentication in a web application with proper security measures.
 
@@ -61,7 +59,7 @@ sequenceDiagram
 
 # Requirements
 
-Vite requires Node.js version 14.18+, 16+. some templates require a higher Node.js version to work, please upgrade if your package manager warns about it.
+Vite 8 requires **Node.js ^20.19.0 || >=22.12.0**. Run `node -v` to verify before installing.
 
 # Install
 
@@ -83,24 +81,22 @@ VITE_FAKE_BACKEND_FLOW_ID=
 
 Remember the Flow holds the backend counter part of the process, some configurations there might affect the behavior of the WebSDK here.
 
-# Fake Backend Server
+# Example Backend
 
 Starting and finishing the session must be done in the backend. To simplify development, this
-sample includes a `fake_backend.js` file that handles backend operations in the frontend.
+sample includes an `example_backend.js` file that handles backend operations in the frontend.
 
 **Important:** Replace this with a proper backend for production. The API key should NEVER be exposed in the frontend.
 
 ## Key Backend Functions
 
-- `fakeBackendStart()` - Creates a new session and stores it in IndexedDB with `used: false`
-- `fakeBackendFinish()` - Retrieves the finish status from the API
-- `fakeBackendGetScore()` - Gets the authentication score from the API
-- `fakeBackendValidateAuthentication()` - Validates the authentication by:
-  - Checking if the session exists and hasn't been used
-  - Verifying the token matches the stored token
-  - Comparing candidate with identityId from the score
-  - Ensuring overall status is "OK"
-  - Marking the session as used to prevent reuse
+- `start(identityId)` - Calls Incode's `/omni/start` API to create a new session and returns the session `token`
+- `getResults(token, candidate)` - Verifies the authentication by:
+  - Finishing the session via `/omni/finish-status` to trigger score calculation
+  - Closing the session via `/omni/session/status/set?action=Closed` to freeze the score
+  - Retrieving the score via `/omni/get/score`
+  - Comparing `candidate` (from the WebSDK) with `identityId` from the score to prevent tampering
+  - Checking that the overall score status is "OK"
 
 # Run
 
