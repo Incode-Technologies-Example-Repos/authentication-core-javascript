@@ -55,7 +55,7 @@ sequenceDiagram
     end
 
     Note over Backend: Success
-    Backend-->>Frontend: Return validation result<br>{"Succesful validation", isValid:true, identityId}
+    Backend-->>Frontend: Return validation result<br>{"Successful validation", isValid:true, identityId}
     Note over Frontend: Show validation results
 ```
 
