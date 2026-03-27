@@ -41,7 +41,7 @@ sequenceDiagram
     Note over IncodeAPI: /omni/session/status/set?action=Closed
     IncodeAPI-->>Backend: Return:<br>{sessionStatus}//Unused
 
-    Backend->>IncodeAPI: Get Authentication Score<br>{token:backToken}
+    Backend->>IncodeAPI: Get Authentication Score<br>{token}
     Note over IncodeAPI: /0/omni/get/score
     IncodeAPI-->>Backend: {score, identityId}
     alt identityId != candidate
