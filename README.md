@@ -40,7 +40,7 @@ sequenceDiagram
     IncodeAPI-->>Backend: Return:<br>{redirectionUrl, action}//Unused
 
     Backend->>IncodeAPI: Close Session
-    Note over IncodeAPI: /0/omni/set/status?action=Closed
+    Note over IncodeAPI: /omni/session/status/set?action=Closed
     IncodeAPI-->>Backend: Return:<br>{sessionStatus}//Unused
 
     Backend->>IncodeAPI: Get Authentication Score<br>{token:backToken}
