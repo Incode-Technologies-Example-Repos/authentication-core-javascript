@@ -60,35 +60,32 @@ function finishAuthentication(response) {
   container.innerHTML = `
         <h1>Authentication Process Finished</h1>
         <p><strong>Candidate:</strong> ${candidate}</p>
-        <button id="verify-authentication-btn">Verify Authentication</button>
+        <button id="get-results-btn">Get Results</button>
       `;
-  document.getElementById("verify-authentication-btn").addEventListener("click", verifyAuthentication);
+  document.getElementById("get-results-btn").addEventListener("click", getResults);
 }
 
 // 4.- Verify the authentication against the score
-async function verifyAuthentication() {
-  console.log("Verifying authentication for candidate:", candidate);
+async function getResults() {
+  console.log("Getting results of the authentication");
   try {
-    const validationResult = await exampleBackend.verifyAuthentication(
-      incodeSession.interviewId,
+    const results = await exampleBackend.getResults(
       incodeSession.token,
-      candidate,
+      candidate
     );
-    console.log("Validation result:", validationResult);
+    console.log("Result:", results);
 
     const container = document.getElementById("finish-container");
     container.innerHTML += `
       <hr>
       <h2>Authentication Verification</h2>
-      <p><strong>Interview ID:</strong> ${incodeSession.interviewId}</p>
       <p><strong>Candidate:</strong> ${candidate}</p>
-      <p><strong>Identity ID:</strong> ${validationResult.identityId || "N/A"}</p>
-      <p><strong>Message:</strong> ${validationResult.message}</p>
-      <p><strong>Authentication Valid:</strong> <span style="color: ${validationResult.valid ? "green" : "red"}; font-weight: bold;">${
-        validationResult.valid ? "✓ VALID" : "✗ INVALID"
+      <p><strong>Identity ID:</strong> ${results.identityId || "N/A"}</p>
+      <p><strong>Message:</strong> ${results.message}</p>
+      <p><strong>Authentication Valid:</strong> <span style="color: ${results.isValid ? "green" : "red"}; font-weight: bold;">${
+        results.isValid ? "✓ VALID" : "✗ INVALID"
       }</span></p>
     `;
-    document.getElementById("verify-authentication-btn").addEventListener("click", verifyAuthentication);
   } catch (e) {
     showError(e);
   }
@@ -109,6 +106,7 @@ async function app() {
     //   },
     // };
 
+    /* Create the WebSDK instance */
     const apiURL = import.meta.env.VITE_API_URL;
     incodeSDKInstance = window.OnBoarding.create({
       apiURL: apiURL,
