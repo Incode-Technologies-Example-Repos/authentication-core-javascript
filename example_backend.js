@@ -42,7 +42,7 @@ const getResults = async function (token, candidate) {
   // Finishing the session triggers score calculation and business rules.
   await finishStatus(token); // Mark session as finished in Incode backend
   
-  // Closing the session stop it from being changed, all /add/ endpoints will be rejected after this, and the score will be frozen.
+  // Closing the session stops it from being changed, all /add/ endpoints will be rejected after this, and the score will be frozen.
   await setStatusClosed(token); // Mark session as closed in Incode backend
   
   let identityId, scoreStatus;
