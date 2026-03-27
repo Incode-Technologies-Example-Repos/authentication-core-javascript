@@ -47,7 +47,7 @@ sequenceDiagram
     Note over IncodeAPI: /0/omni/get/score
     IncodeAPI-->>Backend: {score, identityId}
     alt identityId != candidate
-      Backend->>Frontend: {"candidate doesn't matches score identityId", isValid:false}
+      Backend->>Frontend: {"candidate doesn't match score identityId", isValid:false}
     end
     
     alt score.status != "OK"
