@@ -36,7 +36,7 @@ const start = async function (identityId) {
   return { token };
 };
 
-// Public: Verify the authentication by checking the score and session data
+// Public: Verify the authentication by checking the score and idenitityId returned by the backend, and comparing it with the candidate returned by renderFaceAuth.
 const getResults = async function (token, candidate) {
 
   // Finishing the session triggers score calculation and business rules.
